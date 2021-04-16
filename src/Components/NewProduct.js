@@ -2,10 +2,13 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewProductAction  } from '../actions/productActions';
 
-const NewProduct = () => {
+const NewProduct = ({ history }) => {
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState(0);
+
+    const charging = useSelector(state => state.products.loading);
+    const error = useSelector(state => state.products.error);
 
     const dispatch = useDispatch();
 
@@ -21,6 +24,8 @@ const NewProduct = () => {
             name,
             price
         });
+
+        history.push('/')
     }
 
     return ( 
@@ -64,6 +69,8 @@ const NewProduct = () => {
                             className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
                         >ADD</button>
                     </form>
+                    { charging ? <p>Cargando...</p> : null}
+                    { error ? <p className="alert alert-danger p2 mt-4"> Hubo un error</p> : null}
                 </div>
             </div>
         </div>
