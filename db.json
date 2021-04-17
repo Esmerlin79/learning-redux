@@ -1,41 +1,6 @@
 {
   "productos": [
     {
-      "id": 1,
-      "nombre": "Jugo de Zanahoria",
-      "precio": "31111"
-    },
-    {
-      "id": 2,
-      "nombre": "Jugo de Naranja",
-      "precio": "1"
-    },
-    {
-      "nombre": "Jugo de Naranja",
-      "precio": "300",
-      "id": 3
-    },
-    {
-      "nombre": "Rib Eye 800g",
-      "precio": "200",
-      "id": 4
-    },
-    {
-      "nombre": "Jugo de Fresa",
-      "precio": "200",
-      "id": 5
-    },
-    {
-      "name": "Limonada",
-      "price": 800,
-      "id": 6
-    },
-    {
-      "name": "Limonada",
-      "price": 800,
-      "id": 7
-    },
-    {
       "name": "Naranja",
       "price": 5,
       "id": 8
@@ -46,34 +11,9 @@
       "id": 9
     },
     {
-      "name": "Habichiela",
-      "price": 234,
-      "id": 10
-    },
-    {
-      "name": "fd",
-      "price": 34,
-      "id": 11
-    },
-    {
-      "name": "fd",
-      "price": 34,
-      "id": 12
-    },
-    {
-      "name": "fd",
-      "price": 34,
-      "id": 13
-    },
-    {
       "name": "fd",
       "price": 34,
       "id": 14
-    },
-    {
-      "name": "fd",
-      "price": 34,
-      "id": 15
     },
     {
       "name": "fd",
@@ -109,16 +49,6 @@
       "name": "fd",
       "price": 34,
       "id": 22
-    },
-    {
-      "name": "fd",
-      "price": 34,
-      "id": 23
-    },
-    {
-      "name": "rer",
-      "price": 32,
-      "id": 24
     },
     {
       "name": "Manzana",

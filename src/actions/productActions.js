@@ -4,7 +4,10 @@ import {
     ADD_PRODUCT_ERROR,
     START_PRODUCT_DOWNLOAD,
     DOWNLOAD_SUCCESSFUL_PRODUCT,
-    DOWNLOAD_PRODUCT_ERROR
+    DOWNLOAD_PRODUCT_ERROR,
+    GET_PRODUCT_DELETE,
+    PRODUCT_DELETED_SUCCESSFUL,
+    PRODUCT_DELETED_ERROR
     
 } from '../types';
 import clientAxios from '../config/axios';
@@ -62,7 +65,9 @@ export function getProductAction(){
         try {
             
             const response = await clientAxios.get('/productos');
-            dispatch( successfulProductDownload(response.data) );
+            setTimeout(() => {
+                dispatch( successfulProductDownload(response.data) );
+            },1000)
         } catch (error) {
             console.log(error);
             dispatch( downloadProductError() );
@@ -84,3 +89,38 @@ const downloadProductError = () => ({
     type: DOWNLOAD_PRODUCT_ERROR,
     payload: true
 });
+
+//Select and delete the product
+export function deleteProductAction(id){
+    return async (dispatch) => {
+        dispatch( getProductDelete(id) );
+        
+        try{
+           await clientAxios.delete(`/productos/${id}`);
+           dispatch( productDeletedSuccessful() );
+           Swal.fire(
+            'Deleted!',
+            'Your product has been deleted.',
+            'success'
+        );
+
+        }catch(error){
+            console.log(error);
+            dispatch( productDeletedError() );
+        }
+    }
+}
+
+const getProductDelete = id => ({
+    type: GET_PRODUCT_DELETE,
+    payload: id 
+})
+
+const productDeletedSuccessful = () => ({
+     type: PRODUCT_DELETED_SUCCESSFUL
+})
+
+const productDeletedError = () =>({
+    type: PRODUCT_DELETED_ERROR,
+    payload: true
+})

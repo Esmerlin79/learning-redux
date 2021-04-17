@@ -69,7 +69,7 @@ const NewProduct = ({ history }) => {
                             className="btn btn-primary font-weight-bold text-uppercase d-block w-100"
                         >ADD</button>
                     </form>
-                    { charging ? <p>Cargando...</p> : null}
+                    { charging ? <p>Charging...</p> : null}
                     { error ? <p className="alert alert-danger p2 mt-4"> Hubo un error</p> : null}
                 </div>
             </div>

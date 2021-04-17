@@ -4,14 +4,18 @@ import {
     ADD_PRODUCT_ERROR,
     START_PRODUCT_DOWNLOAD,
     DOWNLOAD_SUCCESSFUL_PRODUCT,
-    DOWNLOAD_PRODUCT_ERROR
+    DOWNLOAD_PRODUCT_ERROR,
+    GET_PRODUCT_DELETE,
+    PRODUCT_DELETED_SUCCESSFUL,
+    PRODUCT_DELETED_ERROR
     
 } from '../types';
 
 const initialState = {
     products: [],
     error: null,
-    loading: false
+    loading: false,
+    productDelete: null
 }
 
 // eslint-disable-next-line
@@ -29,6 +33,7 @@ export default function(state = initialState, action){
                 loading: false,
                 products: [...state.products, action.payload]
             }
+        case PRODUCT_DELETED_ERROR: 
         case DOWNLOAD_PRODUCT_ERROR: 
         case ADD_PRODUCT_ERROR: 
             return{
@@ -42,6 +47,17 @@ export default function(state = initialState, action){
                 loading: false,
                 error: null,
                 products:  action.payload
+            }
+        case GET_PRODUCT_DELETE: 
+            return {
+                ...state,
+                productDelete: action.payload
+            }
+        case PRODUCT_DELETED_SUCCESSFUL:
+            return {
+                ...state,
+                products: state.products.filter( item => item.id !== state.productDelete),
+                productDelete: null
             }
         default:
             return state;

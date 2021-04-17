@@ -1,7 +1,9 @@
 import React from 'react';  
 
 const EditProduct = () => {
-    <div className="row justify-content-center">
+    
+    return(
+        <div className="row justify-content-center">
         <div className="col-md-8">
             <div className="card">
                 <div className="card-body">
@@ -39,6 +41,7 @@ const EditProduct = () => {
                 </div>
             </div>
         </div>
+    )
 }
  
 export default EditProduct;
