@@ -1,19 +1,14 @@
 {
   "productos": [
     {
-      "name": "Naranja",
-      "price": 5,
+      "name": "Naranja ",
+      "price": "400",
       "id": 8
     },
     {
-      "name": "Platano",
+      "name": "Platano3",
       "price": 100,
       "id": 9
-    },
-    {
-      "name": "fd",
-      "price": 34,
-      "id": 14
     },
     {
       "name": "fd",
@@ -74,11 +69,6 @@
       "name": "Batata",
       "price": 10,
       "id": 29
-    },
-    {
-      "name": "Batata",
-      "price": 10,
-      "id": 30
     },
     {
       "name": "Test",

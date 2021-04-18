@@ -1,6 +1,7 @@
 import React, { useState } from 'react';  
 import { useDispatch, useSelector } from 'react-redux';
 import { createNewProductAction  } from '../actions/productActions';
+import { showAlert, hideAlertAction } from '../actions/alertActions';
 
 const NewProduct = ({ history }) => {
 
@@ -9,6 +10,7 @@ const NewProduct = ({ history }) => {
 
     const charging = useSelector(state => state.products.loading);
     const error = useSelector(state => state.products.error);
+    const alerts = useSelector(state => state.alert.alert);
 
     const dispatch = useDispatch();
 
@@ -18,8 +20,15 @@ const NewProduct = ({ history }) => {
         e.preventDefault();
         
         if(name.trim() === '' || price <= 0 ){
+
+            const alert = {
+                msg: 'Both fields are required',
+                class: 'alert alert-danger text-center text-uppercase p3'
+            }
+            dispatch( showAlert(alert) );
             return;
         }
+        dispatch( hideAlertAction() );
         addProduct({
             name,
             price
@@ -36,7 +45,7 @@ const NewProduct = ({ history }) => {
                     <h2 className="text-center mb-4 font-weight-bold">
                         Add New Product
                     </h2>
-
+                    {alerts ? <div className={alerts.class}>{alerts.msg}</div>:null }
                     <form
                         onSubmit={handlerSubmit}
                     >

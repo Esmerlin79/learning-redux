@@ -13,6 +13,7 @@ const Products = () => {
     useEffect( ()=> {
         const loadProducts = () => dispatch( getProductAction() );
         loadProducts()
+        // eslint-disable-next-line
     }, []);
 
     return ( 

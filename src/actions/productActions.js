@@ -7,7 +7,11 @@ import {
     DOWNLOAD_PRODUCT_ERROR,
     GET_PRODUCT_DELETE,
     PRODUCT_DELETED_SUCCESSFUL,
-    PRODUCT_DELETED_ERROR
+    PRODUCT_DELETED_ERROR,
+    GET_PRODUCT_EDITED,
+    START_EDITING_PRODUCT,
+    PRODUCT_EDITED_SUCCESSFULLY,
+    PRODUCT_EDITED_ERROR
     
 } from '../types';
 import clientAxios from '../config/axios';
@@ -65,9 +69,7 @@ export function getProductAction(){
         try {
             
             const response = await clientAxios.get('/productos');
-            setTimeout(() => {
-                dispatch( successfulProductDownload(response.data) );
-            },1000)
+            dispatch( successfulProductDownload(response.data) );
         } catch (error) {
             console.log(error);
             dispatch( downloadProductError() );
@@ -122,5 +124,46 @@ const productDeletedSuccessful = () => ({
 
 const productDeletedError = () =>({
     type: PRODUCT_DELETED_ERROR,
+    payload: true
+})
+
+//Product in edition
+export function getProductEditAction(product){
+    return (dispatch) => {
+        dispatch( getProductEdit(product) )
+    }
+}
+
+const getProductEdit = product => ({
+    type: GET_PRODUCT_EDITED,
+    payload: product
+})
+
+//Edit record in the api
+export function editProductAction(product){
+    return async (dispatch) => {
+        dispatch( editProduct() );
+
+        try {
+           await clientAxios.put(`/productos/${product.id}`,product);
+            dispatch( productEditedSuccesfully(product) )
+        } catch (error) {
+            console.log(error);
+            dispatch( productEditedError() )
+        }
+    }
+}
+
+const editProduct = () => ({
+    type: START_EDITING_PRODUCT
+})
+
+const productEditedSuccesfully = product => ({
+    type: PRODUCT_EDITED_SUCCESSFULLY,
+    payload: product
+})
+
+const productEditedError = () => ({
+    type: PRODUCT_EDITED_ERROR,
     payload: true
 })
